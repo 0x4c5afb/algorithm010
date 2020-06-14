@@ -8,6 +8,11 @@
 输出: 6
 
 // 双指针
+
+复杂性分析
+时间复杂度：O(n)。
+空间复杂度：O(1)。
+
 class Solution {
     public int trap(int[] height) {
         int sum = 0;
@@ -38,6 +43,10 @@ class Solution {
 }
 
 // 栈
+复杂性分析
+时间复杂度：O(n)。
+空间复杂度：O(n)。
+
 class Solution {
     public int trap(int[] height) {
         int sum = 0;
