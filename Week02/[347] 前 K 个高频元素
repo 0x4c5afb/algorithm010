@@ -1,0 +1,42 @@
+347. 前 K 个高频元素
+给定一个非空的整数数组，返回其中出现频率前 k 高的元素。
+
+示例 1:
+输入: nums = [1,1,1,2,2,3], k = 2
+输出: [1,2]
+
+示例 2:
+输入: nums = [1], k = 1
+输出: [1]
+
+题解：
+
+// 堆
+// 复杂度分析
+// 时间复杂度：O(Nlog⁡(k))。Counter 方法的复杂度是 O(N)，建堆和输出的复杂度是 O(Nlog⁡(k))。因此总复杂度为 O(N+Nlog⁡(k))=O(Nlog⁡(k))。
+// 空间复杂度：O(N)，存储哈希表的开销。
+
+class Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+        HashMap<Integer, Integer> count = new HashMap();
+        for (int n : nums) {
+            count.put(n, count.getOrDefault(n, 0) + 1);
+        }
+ PriorityQueue<Integer> heap =
+            new PriorityQueue<Integer>((n1, n2) -> count.get(n1) - count.get(n2));
+
+        for (int n : count.keySet()) {
+            heap.add(n);
+            if (heap.size() > k) {
+                heap.poll();
+            }
+        }
+
+        int[] top_k = new int[k];
+        while (!heap.isEmpty()) {
+            top_k[k-1] = heap.poll();
+            k--;
+        }        
+        return top_k;
+    }
+}
